@@ -1,8 +1,6 @@
 import Entity from "./Entity.js";
 
 export class Player extends Entity{
-    rateOfFire = 1;
-    weapon = 'pistol';
     id;
     colour;
     movement = {
