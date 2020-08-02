@@ -1,37 +1,20 @@
-const socket = io();
-let playerId;
-const move = {
-    up: false,
-    down: false,
-    left: false,
-    right: false,
-}
+import Client from './Client.js'
 
-socket.io.on('connect_error', reason => {
-    socket.disconnect();
-    console.log(`CONNECT ERROR: ${reason}`);
-});
-
-socket.on('id', id => {
-    playerId = id;
-    console.log("A NEW CHALLENGER APPROACHES (client)");
-});
-
-socket.on('info', info => console.log(info));
+const client = new Client();
 
 document.addEventListener('keydown', event => {
     switch(event.key.toLowerCase()) {
         case 'w':
-            beginMovePlayer('up');
+            client.beginMovePlayer('up');
             break;
         case 'a':
-            beginMovePlayer('left');
+            client.beginMovePlayer('left');
             break;
         case 's':
-            beginMovePlayer('down');
+            client.beginMovePlayer('down');
             break;
         case 'd':
-            beginMovePlayer('right');
+            client.beginMovePlayer('right');
             break;
     }
 });
@@ -39,24 +22,16 @@ document.addEventListener('keydown', event => {
 document.addEventListener('keyup', event => {
     switch(event.key.toLowerCase()) {
         case 'w':
-            endMovePlayer('up');
+            client.endMovePlayer('up');
             break;
         case 'a':
-            endMovePlayer('left');
+            client.endMovePlayer('left');
             break;
         case 's':
-            endMovePlayer('down');
+            client.endMovePlayer('down');
             break;
         case 'd':
-            endMovePlayer('right');
+            client.endMovePlayer('right');
             break;
     }
 });
-
-beginMovePlayer(direction) {
-    move[direction] = true;
-}
-
-endMovePlayer(direction) {
-    move[direction] = false;
-}
