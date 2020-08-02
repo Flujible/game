@@ -1,14 +1,8 @@
 export default class Client {
     socket = io();
     playerId;
-    move = {
-        up: false,
-        down: false,
-        left: false,
-        right: false,
-    }
 
-    constructor() {
+
         this.socket.io.on('connect_error', reason => {
             this.socket.disconnect();
             console.log(`CONNECT ERROR: ${reason}`);
@@ -22,8 +16,10 @@ export default class Client {
         this.socket.on('info', info => console.log(info));
     }
 
-    beginMovePlayer(direction) {
-        move[direction] = true;
+    movePlayer(direction) {
+        this.socket.emit('move', direction);
+    }
+
     }
     
     endMovePlayer(direction) {

@@ -5,16 +5,16 @@ const client = new Client();
 document.addEventListener('keydown', event => {
     switch(event.key.toLowerCase()) {
         case 'w':
-            client.beginMovePlayer('up');
+            client.movePlayer('up');
             break;
         case 'a':
-            client.beginMovePlayer('left');
+            client.movePlayer('left');
             break;
         case 's':
-            client.beginMovePlayer('down');
+            client.movePlayer('down');
             break;
         case 'd':
-            client.beginMovePlayer('right');
+            client.movePlayer('right');
             break;
     }
 });

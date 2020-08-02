@@ -3,17 +3,11 @@ import Entity from "./Entity.js";
 export class Player extends Entity{
     id;
     colour;
-    movement = {
-        up: false,
-        down: false,
-        left: false, 
-        right: false
-    }
 
     constructor(id, colour) {
         super();
         this.health = 3;
-        this.moveSpeed = 1;
+        this.moveSpeed = 5;
         this.img = 'test'
         this.id = id;
         this.colour = colour;
@@ -23,11 +17,22 @@ export class Player extends Entity{
         }
     }
 
-    beginMove(direction) {
-        this.movement.direction = true;
-    }
-
-    endMove(direction) {
-        this.movement.direction = false;
+    move(direction) {
+        switch(direction) {
+            case 'up':
+                this.pos.y -= this.moveSpeed;
+                break;
+            case 'left':
+                this.pos.x -= this.moveSpeed;
+                break;
+            case 'down':
+                this.pos.y += this.moveSpeed;
+                break;
+            case 'right':
+                this.pos.x += this.moveSpeed;
+                break;
+            default:
+                break;
+        }
     }
 }
