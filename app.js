@@ -3,10 +3,14 @@ const http = require('http');
 const path = require('path');
 const socketIO = require('socket.io');
 
+let  players = [];
 const app = express();
 const server = http.Server(app);
-const io = socketIO(server);
-let players = [];
+const io = socketIO(server, {
+    allowRequest: (req, fn) => {
+        players.length < 3 ? fn(200, true) : fn("Server full", false);
+    }
+});
 
 app.set('port', 5000);
 app.use(express.static(__dirname + '/static'));
