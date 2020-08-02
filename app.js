@@ -1,7 +1,8 @@
-const express = require('express');
-const http = require('http');
-const path = require('path');
-const socketIO = require('socket.io');
+import express from 'express'
+import http from 'http';
+import path from 'path';
+import socketIO from 'socket.io';
+const __dirname = path.resolve();
 
 let  players = [];
 const app = express();
@@ -13,10 +14,10 @@ const io = socketIO(server, {
 });
 
 app.set('port', 5000);
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(path.join(__dirname, '/static')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(__dirname, 'index.html');
 });
 
 server.listen(5000, () => {
@@ -25,6 +26,7 @@ server.listen(5000, () => {
 
 io.on('connection', socket => {
     players.push(socket.id);
+    socket.emit('id', socket.id);
     socket.broadcast.emit('info', players);
 
     socket.on('disconnect', reason => {

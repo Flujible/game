@@ -5,6 +5,12 @@ export class Player extends Entity{
     weapon = 'pistol';
     id;
     colour;
+    movement = {
+        up: false,
+        down: false,
+        left: false, 
+        right: false
+    }
 
     constructor(id, colour) {
         super();
@@ -13,5 +19,13 @@ export class Player extends Entity{
         this.img = 'test'
         this.id = id;
         this.colour = colour;
+    }
+
+    beginMove(direction) {
+        this.movement.direction = true;
+    }
+
+    endMove(direction) {
+        this.movement.direction = false;
     }
 }
