@@ -19,6 +19,10 @@ export class Player extends Entity{
         this.img = 'test'
         this.id = id;
         this.colour = colour;
+        this.pos = {
+            x: 0,
+            y: 0,
+        }
     }
 
     beginMove(direction) {

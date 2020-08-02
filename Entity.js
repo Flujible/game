@@ -2,6 +2,11 @@ export default class Entity {
     moveSpeed;
     health;
     img;
+    imgDimensions = {
+        width: 25,
+        height: 40,
+    }
+    pos;
 
     constructor() {}
 
