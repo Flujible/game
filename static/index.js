@@ -7,16 +7,33 @@ const client = new Client(canvas);
 document.addEventListener('keydown', event => {
     switch(event.key.toLowerCase()) {
         case 'w':
-            client.movePlayer('up');
+            client.beginMovePlayer('up');
             break;
         case 'a':
-            client.movePlayer('left');
+            client.beginMovePlayer('left');
             break;
         case 's':
-            client.movePlayer('down');
+            client.beginMovePlayer('down');
             break;
         case 'd':
-            client.movePlayer('right');
+            client.beginMovePlayer('right');
+            break;
+    }
+});
+
+document.addEventListener('keyup', event => {
+    switch(event.key.toLowerCase()) {
+        case 'w':
+            client.endMovePlayer('up');
+            break;
+        case 'a':
+            client.endMovePlayer('left');
+            break;
+        case 's':
+            client.endMovePlayer('down');
+            break;
+        case 'd':
+            client.endMovePlayer('right');
             break;
     }
 });

@@ -18,21 +18,17 @@ export class Player extends Entity{
     }
 
     move(direction) {
-        switch(direction) {
-            case 'up':
-                this.pos.y -= this.moveSpeed;
-                break;
-            case 'left':
-                this.pos.x -= this.moveSpeed;
-                break;
-            case 'down':
-                this.pos.y += this.moveSpeed;
-                break;
-            case 'right':
-                this.pos.x += this.moveSpeed;
-                break;
-            default:
-                break;
+        if(direction.up && this.pos.y > 0) {
+            this.pos.y -= this.moveSpeed;
+        }        
+        if(direction.left && this.pos.x > 0) {
+            this.pos.x -= this.moveSpeed;
+        }    
+        if(direction.down && this.pos.y + this.imgDimensions.height < 650) {
+            this.pos.y += this.moveSpeed;
+        }    
+        if(direction.right && this.pos.x + this.imgDimensions.width < 650) {
+            this.pos.x += this.moveSpeed;
         }
     }
 }
