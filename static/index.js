@@ -18,6 +18,18 @@ document.addEventListener('keydown', event => {
         case 'd':
             client.beginMovePlayer('right');
             break;
+        case 'arrowup':
+            client.beginPlayerShoot('up');
+            break;
+        case 'arrowleft':
+            client.beginPlayerShoot('left');
+            break;
+        case 'arrowdown':
+            client.beginPlayerShoot('down');
+            break;
+        case 'arrowright':
+            client.beginPlayerShoot('right');
+            break;
     }
 });
 
@@ -34,6 +46,18 @@ document.addEventListener('keyup', event => {
             break;
         case 'd':
             client.endMovePlayer('right');
+            break;
+        case 'arrowup':
+            client.endPlayerShoot('up');
+            break;
+        case 'arrowleft':
+            client.endPlayerShoot('left');
+            break;
+        case 'arrowdown':
+            client.endPlayerShoot('down');
+            break;
+        case 'arrowright':
+            client.endPlayerShoot('right');
             break;
     }
 });

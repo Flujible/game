@@ -3,6 +3,9 @@ import Entity from "./Entity.js";
 export class Player extends Entity{
     id;
     colour;
+    projectiles = [];
+    canShoot = true;
+    rateOfFire = 1;
 
     constructor(id, colour) {
         super();
@@ -30,5 +33,20 @@ export class Player extends Entity{
         if(direction.right && this.pos.x + this.imgDimensions.width < 650) {
             this.pos.x += this.moveSpeed;
         }
+    }
+
+
+    shoot(direction) {
+        this.projectiles.push({
+            pos: {
+                x: this.pos.x,
+                y: this.pos.y,
+            },
+            direction,  
+        });
+        this.canShoot = false;
+        setTimeout(() => {
+            this.canShoot = true;
+        }, this.rateOfFire * 1000);
     }
 }

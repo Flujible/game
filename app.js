@@ -39,8 +39,15 @@ io.on('connection', socket => {
         socket.broadcast.emit('info', `${reason} :: ${socket.id}`);
     });
 
-    socket.on('move', movement => {
-        game.players[socket.id].move(movement);
-        io.sockets.emit('playerLocations', game.players)
+    socket.on('playerState', ({ move, shootDirection }) => {
+        const player = game.players[socket.id];
+        player.move(move);
+        if(shootDirection && player.canShoot) {
+            player.shoot(shootDirection);
+        }
     });
+
+    setInterval(() => {
+        io.sockets.emit('state', game.state);
+    }, 100/6);
 });
