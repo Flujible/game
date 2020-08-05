@@ -1,4 +1,5 @@
 import Entity from "./Entity.js";
+import Projectile from "./Projectile.js";
 
 export class Player extends Entity{
     id;
@@ -37,16 +38,20 @@ export class Player extends Entity{
 
 
     shoot(direction) {
-        this.projectiles.push({
-            pos: {
-                x: this.pos.x,
-                y: this.pos.y,
-            },
-            direction,  
-        });
+        const x = this.pos.x + (this.imgDimensions.width / 2);
+        const y = this.pos.y + (this.imgDimensions.height / 2);
+        this.projectiles.push(new Projectile(x, y, direction));
         this.canShoot = false;
         setTimeout(() => {
             this.canShoot = true;
-        }, this.rateOfFire * 1000);
+        }, this.rateOfFire * 500);
+    }
+
+    removeProjectiles() {
+        this.projectiles.forEach((projectile, i) => {
+            if(projectile.destroy) {
+                this.projectiles.splice(i, 1);
+            }
+        })
     }
 }

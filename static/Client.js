@@ -1,6 +1,6 @@
 export default class Client {
     socket = io();
-    playerId;
+    player;
     ctx;
     playerMovement = {
         up: false,
@@ -27,7 +27,6 @@ export default class Client {
         this.socket.on('info', info => console.log(info));
 
         this.socket.on('state', state => {
-            console.log(state.players[this.socket.id].projectiles)
             this.draw(state);
         })
 
@@ -70,6 +69,12 @@ export default class Client {
             const player = state.players[playerId];
             this.ctx.fillStyle = player.colour;
             this.ctx.fillRect(player.pos.x, player.pos.y, player.imgDimensions.width, player.imgDimensions.height);
+
+            player.projectiles.forEach(projectile => {
+                this.ctx.strokeStyle = '#000';
+                this.ctx.lineWidth = 10;
+                this.ctx.fillRect(projectile.pos.x, projectile.pos.y, projectile.width, projectile.height);
+            });
         });
     }
 }

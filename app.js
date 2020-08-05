@@ -48,6 +48,10 @@ io.on('connection', socket => {
     });
 
     setInterval(() => {
+        Object.keys(game.state.players).forEach(key => {
+            const player = game.state.players[key] 
+            player.removeProjectiles();
+        });
         io.sockets.emit('state', game.state);
     }, 100/6);
 });
