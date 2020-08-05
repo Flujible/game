@@ -76,5 +76,10 @@ export default class Client {
                 this.ctx.fillRect(projectile.pos.x, projectile.pos.y, projectile.width, projectile.height);
             });
         });
+
+        this.ctx.fillStyle = '#80b36f';
+        state.enemies.forEach(enemy => {
+            this.ctx.fillRect(enemy.pos.x, enemy.pos.y, enemy.imgDimensions.width, enemy.imgDimensions.height);
+        })
     }
 }

@@ -6,7 +6,10 @@ export default class Entity {
         width: 25,
         height: 40,
     }
-    pos;
+    pos = {
+        x: null,
+        y: null,
+    };
 
     constructor() {}
 
